@@ -34,7 +34,7 @@ def recipes_input() -> list[str]:
     recetas = []
 
     try:
-        with open("recetas.txt", "r", encoding="utf-8") as archivo:
+        with open("Menu-Maker/recetas.txt", "r", encoding="utf-8") as archivo:
             for linea in archivo:
                 #print(linea.strip())   
                 recetas.append(linea.strip())
