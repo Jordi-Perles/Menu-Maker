@@ -1,11 +1,11 @@
 
-def days_selection():
+def days_selection() -> dict[str, list[str]]:
     """Selecciona el número de días en los que se repartiran las recetas"""
 
     print("\nSelecciona en cuantos días quieres repartir las recetas")
     
-    print("\n1. De lunes a viernes.")
-    print("\n2. De lunes a domingo.")
+    print("1. De lunes a viernes.")
+    print("2. De lunes a domingo.")
 
     try:
         while True:
@@ -25,7 +25,21 @@ def days_selection():
     except KeyboardInterrupt:
         print("Cerrando programa...")
 
-#def recipes_input():
+def recipes_input() -> list[str]:
+    """Abre el archivo de texto que contiene las recetas y las guarda
+    en una lista de strings."""
+
+    try:
+        with open("recetas.txt", "r", encoding="utf-8") as archivo:
+            recetas = []
+            for linea in archivo:
+                #print(linea.strip())   
+                recetas.append(linea.strip())
+    except FileNotFoundError:
+        print("El archivo no existe.")
+
+    #print(f"\n{recetas}")
+    return recetas
 
 #def menu_generator():
 
@@ -33,7 +47,9 @@ def days_selection():
 
 def main():
     """MAIN"""
+    print("\nGENERADOR DE MENÚS AUTOMÁTICO\n")
 
+    recetas = recipes_input()
     menu_vacio = days_selection()
 
 if __name__ == "__main__":
