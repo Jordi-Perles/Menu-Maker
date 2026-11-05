@@ -1,3 +1,4 @@
+import random
 
 def days_selection() -> dict[str, list[str]]:
     """Selecciona el número de días en los que se repartiran las recetas"""
@@ -41,21 +42,28 @@ def recipes_input() -> list[str]:
     #print(f"\n{recetas}")
     return recetas
 
-def menu_generator(lista_recetas, menu_vacio):
+def menu_generator(lista_recetas, menu):
     """Función que genera el menú."""
-    menu = menu_vacio
-    contador = 0
+
+    recetas = lista_recetas.copy()
 
     for dia in menu.keys():
         for i in range(2):
-            if not lista_recetas:
+    
+            if not recetas:
                 print(menu)
                 return menu
-            receta = lista_recetas[0]
-            menu[dia].append(receta)
-            lista_recetas.remove(receta)
+    
+            tamaño_lista = len(recetas)
+            indice = random.randint(0, tamaño_lista-1)
 
-#def menu_output():
+            receta = recetas[indice]
+            menu[dia].append(receta)
+            recetas.remove(receta)
+
+    return menu
+
+#def menu_output(menu):
 
 def main():
     """MAIN"""
@@ -65,6 +73,8 @@ def main():
     menu_vacio = days_selection()
 
     menu = menu_generator(recetas, menu_vacio)
+
+
 
 if __name__ == "__main__":
     main()
