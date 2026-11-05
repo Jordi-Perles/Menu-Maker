@@ -41,7 +41,19 @@ def recipes_input() -> list[str]:
     #print(f"\n{recetas}")
     return recetas
 
-#def menu_generator():
+def menu_generator(lista_recetas, menu_vacio):
+    """Función que genera el menú."""
+    menu = menu_vacio
+    contador = 0
+
+    for dia in menu.keys():
+        for i in range(2):
+            if not lista_recetas:
+                print(menu)
+                return menu
+            receta = lista_recetas[0]
+            menu[dia].append(receta)
+            lista_recetas.remove(receta)
 
 #def menu_output():
 
@@ -51,6 +63,8 @@ def main():
 
     recetas = recipes_input()
     menu_vacio = days_selection()
+
+    menu = menu_generator(recetas, menu_vacio)
 
 if __name__ == "__main__":
     main()
